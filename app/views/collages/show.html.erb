@@ -1,0 +1,29 @@
+<h1>collages show</h1>
+<table border="5">
+  <tr>
+    <th>Collage Name</th>
+    <th>Address</th>
+    <th> Photos</th>
+  </tr>
+  <tr>    
+    <td><%= @coll.name%></td>
+    <td><%= @coll.address%></td>
+    <%@coll.photos.each do |photo|%>
+    <td>
+      <a href="<%= photo.avatar.url(:thumb)%>" data-lightbox="roadtrip"><%=image_tag(photo.avatar.url(:thumb))%></a>
+    </td>
+
+    <%end%>
+  </tr>
+</table>
+<%= link_to "Back", collages_path %>
+
+
+<script>
+$(document).ready(function() {
+  lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+  });
+</script>

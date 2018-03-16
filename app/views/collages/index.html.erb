@@ -1,0 +1,45 @@
+<body>
+<h1>Collage/index</h1>
+<h1>Listing Collages</h1>
+ <table border="5" >
+  <tr>
+    <th>Collage Name</th>
+    <th>Address</th>  
+    <th>Photoes</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
+ <% @colls.each do |col| %>
+  <tr>
+    <td><%= col.name%></td>
+    <td><%= col.address %></td>
+    <td>
+    <%col.photos.each do |photo|%>
+   <a href="<%= photo.avatar.url(:medium)%>" data-lightbox="roadtrip"><%=image_tag(photo.avatar.url(:thumb))%></a>
+    <% end%>
+    </td>
+    <td><%= link_to "Show", collage_path(col) %></td>
+    <td><%= link_to "Edit", edit_collage_path(col) %></td>
+    <td><%= link_to "Remove", col, method: :delete, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end %>
+</table>
+<br>
+<%= link_to "Back", root_path %>
+</body>
+<style>
+body {
+   background-image: url("paper.gif");
+   background-color: #cccccc;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+  lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+  });
+</script>
