@@ -3,7 +3,7 @@ class CollagesController < ApplicationController
   @colls = Collage.all
   end
 
-  def create
+  def create    
     @coll = current_user.build_collage(coll_params)
     if @coll.save
       params[:avatar].each do |file|
